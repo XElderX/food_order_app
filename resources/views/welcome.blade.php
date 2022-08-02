@@ -7,7 +7,7 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -21,6 +21,23 @@
         </style>
     </head>
     <body class="antialiased">
+        <div>
+            <ul class="navbar-nav mr-auto">
+                {{-- @auth --}}
+                <li class="nav-item">
+                    <a href="{{ route('restourants.index') }}" class="nav-link">Restourant List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dishes.index') }}" class="nav-link">Dishes List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('reviews.index') }}" class="nav-link">Reviews</a>
+                </li>
+                    
+                {{-- @endauth --}}
+            </ul>
+
+        </div>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
