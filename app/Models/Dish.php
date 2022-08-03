@@ -10,7 +10,7 @@ class Dish extends Model
     use HasFactory;
     public $fillable = ['menu_id', 'dish_name', 'description', 'price', 'foto_url'];
 
-    public function order(){
+    public function orders(){
         return $this->hasMany(Order::class);
     }
     protected $with = ['menu'];

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('price', 9, 2);
             $table->string('foto_url')->nullable();
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade')->onUpdate('restrict');
-           
+            $table->timestamps();
         });
     }
 
