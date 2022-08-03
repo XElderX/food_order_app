@@ -10,7 +10,7 @@ class Menu extends Model
     use HasFactory;
     public $fillable = ['title', 'restourant'];
 
-    public function reviews(){
+    public function dishes(){
         return $this->hasMany(Dish::class);
     }
     protected $with = ['restourant'];

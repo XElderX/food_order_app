@@ -91,8 +91,8 @@ class ApiMenusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $restourant=\App\Models\Menu::find($id);
-        $restourant->update($request->all());
+        $menu=\App\Models\Menu::find($id);
+        $menu->update($request->all());
         return (\App\Models\Menu::findOrFail($id) == true) ?
         response()->json(['success' => 'success'], 200) : 
         response()->json(['error' => 'updating database was not successful'], 500);
