@@ -45,7 +45,6 @@ class ApiDishesController extends Controller
             'dish_name' => 'required', 
             'description' => 'required',
             'price' => 'required',
-            'foto_url' => 'required',
         ];
 
         $validator = Validator::make($data, $rules);
