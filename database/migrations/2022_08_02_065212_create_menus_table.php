@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('menu_title');
             $table->bigInteger('restourant_id')->unsigned();
             $table->foreign('restourant_id')->references('id')->on('restourants')->onDelete('cascade')->onUpdate('restrict');
-
-
             $table->timestamps();
         });
     }

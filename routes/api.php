@@ -25,6 +25,9 @@ Route::group(['prefix' => 'v1'],function (){
     Route::resource('/menu', ApiMenusController::class);
     Route::resource('/dishes', ApiDishesController::class);
     Route::resource('/orders', ApiOrdersController::class);
+   
+    Route::get('/dishes/menu/{id}', [ApiDishesController::class,'menusDishes']);
+
     Route::controller(AuthController::class)->group(function () {
         Route::post('login', 'login');
         Route::post('register', 'register');

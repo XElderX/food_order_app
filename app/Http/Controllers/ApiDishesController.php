@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -114,4 +115,10 @@ class ApiDishesController extends Controller
         response()->json(['success' => 'success'], 200) : 
         response()->json(['error' => 'deleting from database was not successful'], 500);
 }
+public function menusDishes($id)
+    {
+        Return Dish::where('menu_id', $id)->get();
+        
+  
+    }
 }
