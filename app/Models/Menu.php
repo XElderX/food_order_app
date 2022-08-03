@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     use HasFactory;
-    public $fillable = ['title', 'restourant'];
+    public $fillable = ['menu_title', 'restourant_id'];
 
     public function dishes(){
         return $this->hasMany(Dish::class);
