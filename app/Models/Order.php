@@ -8,13 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    public $fillable = ['dish_name', 'description', 'price', 'foto_url'];
+    public $fillable = ['user_id', 'name', 'surname', 'status'];
 
 
-    protected $with = ['dish'];
 
-    public function dish(){
-        return $this->belongsTo(Dish::class);
+
+    protected $with = ['user'];
+ 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    
+    public function orderedItem(){
+        return $this->hasMany(OrderedItem::class);
     }
 
 }

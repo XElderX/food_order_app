@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\OrderedItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ApiOrdersController extends Controller
+class ApiOrderedItemsController extends Controller
 {
         // public function __construct()
     // {
@@ -19,7 +19,10 @@ class ApiOrdersController extends Controller
      */
     public function index()
     {
-        return \App\Models\Order::all();
+
+        return OrderedItem::with(['order', 'dish'])->get();
+        // return \App\Models\OrderedItem::all();
+        
     }
 
     /**
@@ -42,20 +45,20 @@ class ApiOrdersController extends Controller
     {
         $data = $request->json()->all();
         $rules = [
-            'user_id' => 'required',
-            'name' => 'required', 
-            'surname' => 'required',
-            'status' => 'required',
+            'order_id' => 'required', 
+            'dish_id' => 'required',
+            'quantity' => 'required',
+            
+            
         ];
 
         $validator = Validator::make($data, $rules);
         if ($validator->passes()) {
-            $order = new \App\Models\Order();
-            $order->user_id = $data['user_id'];
-            $order->name = $data['name'];
-            $order->surname = $data['surname'];
-            $order->status = $data['status'];
-            return ($order->save() !== 1) ? 
+            $orderedItem = new \App\Models\OrderedItem();
+            $orderedItem->order_id = $data['order_id'];
+            $orderedItem->dish_id = $data['dish_id'];
+        
+            return ($orderedItem->save() !== 1) ? 
                 response()->json(['success' => 'success'], 201) : 
                 response()->json(['error' => 'saving to database was not successful'], 500)  ;
         } else {
@@ -72,7 +75,7 @@ class ApiOrdersController extends Controller
      */
     public function show($id)
     {
-        return \App\Models\Order::findOrFail($id);
+        return \App\Models\OrderedItem::findOrFail($id);
     }
 
     /**
@@ -95,8 +98,8 @@ class ApiOrdersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order=\App\Models\Order::find($id);
-        $order->update($request->all());
+        $orderedItem=\App\Models\OrderedItem::find($id);
+        $orderedItem->update($request->all());
         return (\App\Models\Order::findOrFail($id) == true) ?
         response()->json(['success' => 'success'], 200) : 
         response()->json(['error' => 'updating database was not successful'], 500);
@@ -110,14 +113,20 @@ class ApiOrdersController extends Controller
      */
     public function destroy($id)
     {
-        return (\App\Models\Order::destroy($id) == 1) ? 
+        return (\App\Models\OrderedItem::destroy($id) == 1) ? 
         response()->json(['success' => 'success'], 200) : 
         response()->json(['error' => 'deleting from database was not successful'], 500);
 }
-public function userOrders($id)
+public function showItemsByOrder($id)
     {
-        Return Order::where('user_id', $id)->get();
+
+        $orderItem = OrderedItem::where('order_id', $id)->get();
+        
+        Return $orderItem;
         
   
     }
+
+  
+
 }
