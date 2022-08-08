@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    public $fillable = ['user_id', 'name', 'surname', 'status'];
+    public $fillable = ['user_id', 'name', 'surname', 'status', 'total_price'];
 
 
 

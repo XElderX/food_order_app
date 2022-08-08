@@ -47,7 +47,7 @@ class ApiOrderedItemsController extends Controller
         $rules = [
             'order_id' => 'required', 
             'dish_id' => 'required',
-            'quantity' => 'required',
+            'price' => 'required',
             
             
         ];
@@ -57,6 +57,8 @@ class ApiOrderedItemsController extends Controller
             $orderedItem = new \App\Models\OrderedItem();
             $orderedItem->order_id = $data['order_id'];
             $orderedItem->dish_id = $data['dish_id'];
+            $orderedItem->quantity = $data['quantity'];
+            $orderedItem->price = $data['price'];
         
             return ($orderedItem->save() !== 1) ? 
                 response()->json(['success' => 'success'], 201) : 

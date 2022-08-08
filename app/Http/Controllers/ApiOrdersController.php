@@ -45,7 +45,7 @@ class ApiOrdersController extends Controller
             'user_id' => 'required',
             'name' => 'required', 
             'surname' => 'required',
-            'status' => 'required',
+            'total_price' => 'required',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -55,6 +55,7 @@ class ApiOrdersController extends Controller
             $order->name = $data['name'];
             $order->surname = $data['surname'];
             $order->status = $data['status'];
+            $order->total_price = $data['total_price'];
             return ($order->save() !== 1) ? 
                 response()->json(['success' => 'success'], 201) : 
                 response()->json(['error' => 'saving to database was not successful'], 500)  ;
