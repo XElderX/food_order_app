@@ -45,6 +45,8 @@ class ApiOrdersController extends Controller
             'user_id' => 'required',
             'name' => 'required', 
             'surname' => 'required',
+            'address' => 'required', 
+            'email' => 'required',
             'total_price' => 'required',
         ];
 
@@ -54,6 +56,8 @@ class ApiOrdersController extends Controller
             $order->user_id = $data['user_id'];
             $order->name = $data['name'];
             $order->surname = $data['surname'];
+            $order->address = $data['address'];
+            $order->email = $data['email'];
             $order->status = $data['status'];
             $order->total_price = $data['total_price'];
             return ($order->save() !== 1) ? 
